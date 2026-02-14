@@ -1,4 +1,4 @@
-import { LoanState, ConsentDetails } from './types';
+import { LoanState, ConsentDetails, BankAccount } from './types';
 
 export const INITIAL_LOAN_STATE: LoanState = {
   amount: 200000,
@@ -13,6 +13,33 @@ export const CONSENT_INFO: ConsentDetails = {
   dataPoints: ["Bank statements (last 12 months)", "Account Balance"],
   partner: "Secure AA Network"
 };
+
+export const MOCK_BANKS: BankAccount[] = [
+  {
+    id: 'hdfc',
+    bankName: 'HDFC Bank',
+    accountType: 'Savings Account',
+    mask: '4582',
+    logo: 'https://logo.clearbit.com/hdfcbank.com',
+    isLinked: true
+  },
+  {
+    id: 'sbi',
+    bankName: 'State Bank of India',
+    accountType: 'Savings Account',
+    mask: '8821',
+    logo: 'https://logo.clearbit.com/sbi.co.in',
+    isLinked: true
+  },
+  {
+    id: 'icici',
+    bankName: 'ICICI Bank',
+    accountType: 'Credit Card',
+    mask: '1102',
+    logo: 'https://logo.clearbit.com/icicibank.com',
+    isLinked: false
+  }
+];
 
 export const MOCK_CHART_DATA = [
   { name: 'Jan', income: 45000, expense: 32000 },

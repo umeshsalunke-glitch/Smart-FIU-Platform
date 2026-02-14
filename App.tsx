@@ -4,18 +4,22 @@ import { Bell } from 'lucide-react';
 import { MobileFrame } from './components/MobileFrame';
 import { HomeScreen } from './screens/HomeScreen';
 import { EducationScreen } from './screens/EducationScreen';
+import { AALoginScreen } from './screens/AALoginScreen';
+import { BankSelectionScreen } from './screens/BankSelectionScreen';
 import { ConsentScreen } from './screens/ConsentScreen';
+import { BankOtpScreen } from './screens/BankOtpScreen';
 import { SuccessScreen } from './screens/SuccessScreen';
 import { ProcessingScreen } from './screens/ProcessingScreen';
 import { ResultScreen } from './screens/ResultScreen';
 import { TrustCenterScreen } from './screens/TrustCenterScreen';
-import { Screen, LoanState } from './types';
+import { Screen, LoanState, BankAccount } from './types';
 import { INITIAL_LOAN_STATE } from './constants';
 
 const App: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<Screen>(Screen.HOME);
   const [loanState, setLoanState] = useState<LoanState>(INITIAL_LOAN_STATE);
   const [showNotification, setShowNotification] = useState(false);
+  const [selectedBank, setSelectedBank] = useState<BankAccount | null>(null);
 
   // Notification Handler
   const triggerNotification = () => {
@@ -35,8 +39,14 @@ const App: React.FC = () => {
         return <HomeScreen loanState={loanState} setLoanState={setLoanState} onNavigate={setCurrentScreen} />;
       case Screen.EDUCATION:
         return <EducationScreen onNavigate={setCurrentScreen} />;
+      case Screen.AA_LOGIN:
+        return <AALoginScreen onNavigate={setCurrentScreen} />;
+      case Screen.BANK_SELECTION:
+        return <BankSelectionScreen onNavigate={setCurrentScreen} setSelectedBank={setSelectedBank} />;
       case Screen.CONSENT:
-        return <ConsentScreen onNavigate={setCurrentScreen} />;
+        return <ConsentScreen onNavigate={setCurrentScreen} selectedBank={selectedBank} />;
+      case Screen.BANK_OTP:
+        return <BankOtpScreen onNavigate={setCurrentScreen} selectedBank={selectedBank} />;
       case Screen.SUCCESS:
         return <SuccessScreen onNavigate={setCurrentScreen} />;
       case Screen.PROCESSING:
